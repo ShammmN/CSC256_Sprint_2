@@ -1,0 +1,29 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          # PIPELINE BUG 1: "3.99" is not a valid Python version
+          python-version: "3.99"
+
+      - name: Install dependencies
+        # PIPELINE BUG 2: Missing 'run:' key -- step will fail to parse
+        pip install pytest pytest-cov
+
+      - name: Run tests
+        run: |
+          # PIPELINE BUG 3: --cov=gradebook should be --cov=src
+          # src/__init__.py is also missing, so pytest can't find the module at all
+          pytest tests/ --cov=gradebook --cov-report=term-missing
