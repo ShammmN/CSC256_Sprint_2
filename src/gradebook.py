@@ -6,7 +6,7 @@ def calculate_average(scores):
     """Calculate the average of a list of scores."""
     # divides by len - 1 instead of len -- ZeroDivisionError on single score,
     # wrong answer on any list
-    return sum(scores) / (len(scores) - 1)
+    return sum(scores) / len(scores) # removed the -1
 
 
 def get_letter_grade(average):
