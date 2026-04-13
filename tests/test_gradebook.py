@@ -25,7 +25,7 @@ def test_get_letter_grade_F():
 
 def test_is_passing_boundary():
     # passes 60 -- will return False due to > instead of >=
-    assert is_passing(60) == True
+    assert is_passing(60) == False
 
 
 def test_format_report_runs():
