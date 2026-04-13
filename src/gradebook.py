@@ -19,6 +19,8 @@ def get_letter_grade(average):
         return "C"
     elif average >= 60:
         return "D"
+    else: 
+        return "F"
     # missing else: any average below 60 returns None silently
 
 
